@@ -6,6 +6,7 @@ import {
   type NotificationActorType,
   type NotificationID,
   type NotificationType,
+  type NotificationTypeMap,
 } from '../../../model/notification.js';
 import {
   NOTIFICATION_DEFAULT_LIMIT,
@@ -67,6 +68,8 @@ export class PrismaNotificationRepository implements NotificationRepository {
           id: notification.getActorID(),
         },
       },
+      sourceID: notification.getSourceID() ?? '',
+      activityID: notification.getActivityID() ?? '',
       createdAt: notification.getCreatedAt(),
       readAt: null,
     };
@@ -147,6 +150,14 @@ export class PrismaNotificationRepository implements NotificationRepository {
         readAt: notification.readAt
           ? Option.some(notification.readAt)
           : Option.none(),
+        sourceID:
+          notification.sourceID === ''
+            ? null
+            : (notification.sourceID as NotificationTypeMap[typeof notificationType]['source']),
+        activityID:
+          notification.activityID === ''
+            ? null
+            : (notification.activityID as NotificationTypeMap[typeof notificationType]['activity']),
       }),
     );
   }

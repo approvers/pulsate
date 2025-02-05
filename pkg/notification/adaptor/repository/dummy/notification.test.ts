@@ -1,6 +1,8 @@
 import { Option, Result } from '@mikuroxina/mini-fn';
 import { describe, expect, it } from 'vitest';
 import type { AccountID } from '../../../../accounts/model/account.js';
+import type { NoteID } from '../../../../notes/model/note.js';
+import type { ReactionID } from '../../../../notes/model/reaction.js';
 import {
   Notification,
   type NotificationID,
@@ -15,6 +17,8 @@ describe('InMemoryNotificationRepository', () => {
     actorType: 'account',
     actorID: '11' as AccountID,
     createdAt: new Date('2023-09-10T00:00:00Z'),
+    sourceID: null,
+    activityID: null,
   });
   const dummyNotification2 = Notification.new({
     id: '2' as NotificationID,
@@ -23,6 +27,8 @@ describe('InMemoryNotificationRepository', () => {
     actorType: 'account',
     actorID: '11' as AccountID,
     createdAt: new Date('2023-09-11T00:00:00Z'),
+    sourceID: '12' as NoteID,
+    activityID: '13' as ReactionID,
   });
   const dummyNotification3 = Notification.new({
     id: '3' as NotificationID,
@@ -31,6 +37,8 @@ describe('InMemoryNotificationRepository', () => {
     actorType: 'account',
     actorID: '11' as AccountID,
     createdAt: new Date('2023-09-12T00:00:00Z'),
+    sourceID: null,
+    activityID: '14' as NoteID,
   });
   const dummyNotification4 = Notification.new({
     id: '4' as NotificationID,
@@ -39,6 +47,8 @@ describe('InMemoryNotificationRepository', () => {
     actorType: 'account',
     actorID: '11' as AccountID,
     createdAt: new Date('2023-09-13T00:00:00Z'),
+    sourceID: '15' as NoteID,
+    activityID: '16' as NoteID,
   });
   const dummyNotification5 = Notification.new({
     id: '5' as NotificationID,
@@ -47,6 +57,8 @@ describe('InMemoryNotificationRepository', () => {
     actorType: 'account',
     actorID: '11' as AccountID,
     createdAt: new Date('2023-09-14T00:00:00Z'),
+    sourceID: null,
+    activityID: null,
   });
 
   const repository = new InMemoryNotificationRepository([

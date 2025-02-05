@@ -2,6 +2,7 @@
 
 exports[`Notification > should create new instance 1`] = `
 Notification {
+  "activityID": null,
   "actorID": "20",
   "actorType": "account",
   "createdAt": 2023-09-10T00:00:00.000Z,
@@ -11,5 +12,6 @@ Notification {
     Symbol(OptionNone),
   ],
   "recipientID": "10",
+  "sourceID": null,
 }
 `;
